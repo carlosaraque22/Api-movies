@@ -30,7 +30,7 @@ app.post('/registro', (req, res) => {
         var data1 = db.getData("/usuario");
         if (data1 === user) {
             console.log("Este usuario ya existe")
-            res.json(" Este usuario ya existe ")
+            res.json(" Este usuario ya existe")
         } else {
             const password = datos.password
             db.push(path, { user, password })
