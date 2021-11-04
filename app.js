@@ -24,7 +24,7 @@ app.get('/api', async (req, res) => {
 })
 
 // Registrar usuarios y guardar en la base de datos
-app.post('/registro', (req, res) => {
+app.post('/api/registro', (req, res) => {
     try {
         const data = req.body
         const path = "/" + data.email
@@ -47,7 +47,7 @@ app.post('/registro', (req, res) => {
     }
 })
 
-app.post('/login', (req, res) => {
+app.post('/api/login', (req, res) => {
     try {
         const data = req.body
         const email = data.email
@@ -56,10 +56,15 @@ app.post('/login', (req, res) => {
             const password1 = data.password
             bcrypt.compare(password1, data1[email].password, function (err, result) {
                 if (result) {
-                    jwt.sign({ user: email }, 'secretkey', {expiresIn: '1h'}, (err, token) => {
-                        res.json({
-                            token
-                        })
+                    jwt.sign({ user: email }, 'secretkey', { expiresIn: '1h' }, (err, token) => {
+                        if (token) {
+                            res.json({
+                                token
+                            })
+                        } else {
+                            console.log(err)
+                            res.json("Error al iniciar sesión")
+                        }
                     })
                 }
                 else {
@@ -72,6 +77,22 @@ app.post('/login', (req, res) => {
         }
     } catch (error) {
         console.log("Error al intentar correr el login")
+    }
+})
+
+app.get('/api/movies', (req, res) => {
+    try {
+        const data = req.body
+        const token = data.token
+        jwt.verify(token, 'secretkey', (error) => {
+            if (error) {
+                res.json("El usuario no esta logeado");
+            } else {
+                res.json({authData})
+            }
+        })
+    } catch (error) {
+        console.log(error)
     }
 })
 
