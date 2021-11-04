@@ -10,7 +10,6 @@ const { JsonDB } = require('node-json-db');
 const { Config } = require('node-json-db/dist/lib/JsonDBConfig');
 // importando librerias para encriptar la password
 const bcrypt = require('bcrypt');
-const e = require('express');
 const saltRounds = 10;
 
 app.use(express.json())
