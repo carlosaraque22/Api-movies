@@ -6,18 +6,35 @@ var cors = require('cors')
     // Importando libreria para usar json web token
 const jwt = require('jsonwebtoken');
 // Importando librerias para usar la base de datos json
+const Database = require("easy-json-database");
 const { JsonDB } = require('node-json-db');
 const { Config } = require('node-json-db/dist/lib/JsonDBConfig');
 // importando librerias para encriptar la password
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+// importando axios para hacer las request a la pagina themovies
 const axios = require('axios').default;
+// libreria para generar numeros randoms para el "suggestionScore"
+const random = require('random')
+    // libreria para guardar la fecha actual
+const dateTime = require('node-datetime');
+const e = require('express');
+const dt = dateTime.create();
+const formatted = dt.format('m-d-Y');
 
 app.use(express.json())
 app.use(cors())
 
 // Configuracion del archivo .json que hara de base de datos
-const db = new JsonDB(new Config('./Usuarios', true, false, '/'))
+const usuarios = new JsonDB(new Config('./Usuarios', true, false, '/'))
+const favoritas = new JsonDB(new Config('./Favoritas', true, false, '/'))
+const db = new Database("./some-database.json", {
+    snapshots: {
+        enabled: true,
+        interval: 24 * 60 * 60 * 1000,
+        folder: './backups/'
+    }
+});
 
 // Endpoint para probar que la api esta en funcionamiento
 app.get('/api', async(req, res) => {
@@ -33,12 +50,12 @@ app.post('/api/registro', (req, res) => {
         const firstName = data.firstName
         const lastName = data.lastName
         const password = data.password
-        const data1 = db.getData("/")
+        const data1 = usuarios.getData("/")
         if (email !== undefined && email in data1) {
             res.send("El usuario ya se encuentra registrado")
         } else if (email !== undefined && firstName !== undefined && lastName !== undefined && password !== undefined) {
             bcrypt.hash(password, saltRounds, function(err, password) {
-                db.push(path, { firstName, lastName, password })
+                usuarios.push(path, { firstName, lastName, password })
                 res.send("Usuario registrado con éxito")
             });
         } else {
@@ -54,7 +71,7 @@ app.post('/api/login', (req, res) => {
     try {
         const data = req.body
         const email = data.email
-        const data1 = db.getData("/")
+        const data1 = usuarios.getData("/")
         if (email !== undefined) {
             if (email in data1) {
                 const password1 = data.password
@@ -96,32 +113,123 @@ app.get('/api/movies', (req, res) => {
             } else {
                 const parameters = req.query
                 const keyword = parameters.keyword
-                if (keyword) {
+                const page = parameters.page
+                if (keyword && keyword !== "") {
                     axios.get(
-                            `https://api.themoviedb.org/3/keyword/${keyword}/movies?api_key=a55c741f30c031d381696c5b342d7713`
+                            `https://api.themoviedb.org/3/search/movie?api_key=a55c741f30c031d381696c5b342d7713&query=${keyword}&page=${page}`
                         )
                         .then(function(response) {
                             // handle success
-                            res.json(response.data)
-                            console.log(response.data.results[2]);
+                            const movies = response.data
+                                // const numero = movies.total_results
+                            for (let i = 0; i < movies.results.length; i++) {
+                                movies.results[i].suggestionScore = random.int((min = 0), (max = 99)) // uniform integer in [ min, max ]
+                            }
+                            movies.results.sort(function comparer(a, b) {
+                                if (a.suggestionScore > b.suggestionScore) {
+                                    return -1;
+                                }
+                                if (a.suggestionScore < b.suggestionScore) {
+                                    return 1;
+                                }
+                                // a must be equal to b
+                                return 0;
+                            });
+                            console.log(movies);
+                            res.send(
+                                movies
+                            )
                         })
                         .catch(function(error) {
-                            res.send("Algo fallo")
+                            res.send("Por favor introduzca una keyword valida")
                             console.log(error);
                         })
                         .then(function() {
                             // always executed
                         });
-                } else if (!keyword) {
-                    console.log(keyword)
-                    res.send("Por favor introduzca una keyword valida")
                 } else {
-
+                    axios.get(
+                            `https://api.themoviedb.org/3/discover/movie?api_key=a55c741f30c031d381696c5b342d7713&page=${page}`
+                        )
+                        .then(function(response) {
+                            // handle success
+                            const movies = response.data
+                                // const numero = movies.total_results
+                            for (let i = 0; i < movies.results.length; i++) {
+                                movies.results[i].suggestionScore = random.int((min = 0), (max = 99)) // uniform integer in [ min, max ]
+                            }
+                            movies.results.sort(function comparer(a, b) {
+                                if (a.suggestionScore > b.suggestionScore) {
+                                    return -1;
+                                }
+                                if (a.suggestionScore < b.suggestionScore) {
+                                    return 1;
+                                }
+                                // a must be equal to b
+                                return 0;
+                            });
+                            console.log(movies);
+                            res.send(
+                                movies
+                            )
+                        })
+                        .catch(function(error) {
+                            res.send("Por favor introduzca una keyword valida")
+                            console.log(error);
+                        })
+                        .then(function() {
+                            // always executed
+                        });
                 }
             }
         })
     } catch (error) {
         console.log(error)
+    }
+})
+
+app.post('/api/movies/favoritas', (req, res) => {
+    try {
+        const token = req.headers.token
+        jwt.verify(token, 'secretkey', (error) => {
+            if (error) {
+                res.json("El usuario no esta logeado");
+            } else {
+                const data = req.body
+                const path = data.title
+                data.addedAt = formatted
+                favoritas.push("/", {
+                    data
+                }, false)
+                db.set(path, data)
+                res.send("Pelicula guardada exitosamente en favoritos")
+            }
+        })
+    } catch (error) {
+        console.log(error)
+        res.send("Ocurrio un error, intente de nuevo por favor")
+    }
+})
+
+app.get('/api/movies/getfavoritas', (req, res) => {
+    try {
+        const token = req.headers.token
+        jwt.verify(token, 'secretkey', (error) => {
+            if (error) {
+                res.json("El usuario no esta logeado");
+            } else {
+                const data2 = db.all();
+                for (let i = 0; i < data2.length; i++) {
+                    data2[i].data.suggestionForTodayScore = random.int((min = 0), (max = 99)) // uniform integer in [ min, max ]
+
+                }
+                console.log(data2)
+                res.json("Hola")
+            }
+        })
+    } catch (error) {
+        console.log(error)
+        res.json("algo fallo")
     }
 })
 
