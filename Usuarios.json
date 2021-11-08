@@ -1,1 +1,12 @@
-{"cararqueu@gmail.com":{"firstName":"Carlos","lastName":"Araque","password":"$2b$10$aqBSFEaR0UHP8LdvVB9KM.N2SosHm.qjoORzkel0aLOLexuLUEPmC"}}
+{
+    "wuilliam321u@gmail.com": {
+        "firstName": "Wuilliam",
+        "lastName": "Lacruz",
+        "password": "$2b$10$bEs0h4pxUC8ePmlrQ1J7dOhkpIlFShdz9hkhcMMDguN8cQrywat8W"
+    },
+    "cararqueu@gmail.com": {
+        "firstName": "Carlos",
+        "lastName": "Araque",
+        "password": "$2b$10$3QFRie5ztSU2CeXVpe5TTuJNEt6IcEdNqvs1x14QiT63CIgl0yJbK"
+    }
+}

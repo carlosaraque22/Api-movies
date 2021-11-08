@@ -26,9 +26,8 @@ app.use(express.json())
 app.use(cors())
 
 // Configuracion del archivo .json que hara de base de datos
-const usuarios = new JsonDB(new Config('./Usuarios', true, false, '/'))
-const favoritas = new JsonDB(new Config('./Favoritas', true, false, '/'))
-const db = new Database("./some-database.json", {
+const usuarios = new JsonDB(new Config('./Usuarios', true, true, '/'))
+const favoritas = new Database("./Favoritas.json", {
     snapshots: {
         enabled: true,
         interval: 24 * 60 * 60 * 1000,
@@ -198,10 +197,7 @@ app.post('/api/movies/favoritas', (req, res) => {
                 const data = req.body
                 const path = data.title
                 data.addedAt = formatted
-                favoritas.push("/", {
-                    data
-                }, false)
-                db.set(path, data)
+                favoritas.set(path, data)
                 res.send("Pelicula guardada exitosamente en favoritos")
             }
         })
@@ -218,13 +214,22 @@ app.get('/api/movies/getfavoritas', (req, res) => {
             if (error) {
                 res.json("El usuario no esta logeado");
             } else {
-                const data2 = db.all();
+                const data2 = favoritas.all();
                 for (let i = 0; i < data2.length; i++) {
                     data2[i].data.suggestionForTodayScore = random.int((min = 0), (max = 99)) // uniform integer in [ min, max ]
 
                 }
-                console.log(data2)
-                res.json("Hola")
+                data2.sort(function comparer(a, b) {
+                    if (a.data.suggestionForTodayScore > b.data.suggestionForTodayScore) {
+                        return -1;
+                    }
+                    if (a.data.suggestionForTodayScore < b.data.suggestionForTodayScore) {
+                        return 1;
+                    }
+                    // a must be equal to b
+                    return 0;
+                });
+                res.send(data2)
             }
         })
     } catch (error) {
