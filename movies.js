@@ -23,7 +23,7 @@ const getMoviesByKeyword = (req, res) => {
         const token = req.headers.token
         jwt.verify(token, 'secretkey', (error) => {
             if (error) {
-                res.json("El usuario no esta logeado");
+                res.send("El usuario no se encuentra autenticado");
             } else {
                 const parameters = req.query
                 const keyword = parameters.keyword
@@ -104,7 +104,7 @@ const addFavoriteMovies = (req, res) => {
         const token = req.headers.token
         jwt.verify(token, 'secretkey', (error) => {
             if (error) {
-                res.json("El usuario no se encuentra autenticado");
+                res.send("El usuario no se encuentra autenticado");
             } else {
                 const decoded = jwt.decode(token);
                 const body = req.body
@@ -128,7 +128,7 @@ const getFavoriteMovies = (req, res) => {
         const token = req.headers.token
         jwt.verify(token, 'secretkey', (error) => {
             if (error) {
-                res.json("El usuario no esta logeado");
+                res.send("El usuario no se encuentra autenticado");
             } else {
                 const decoded = jwt.decode(token);
                 const moviesdb = favoritasDb.getData("/")
