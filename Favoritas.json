@@ -1,63 +1,139 @@
 {
-  "Venom: Let There Be Carnage": {
-    "adult": false,
-    "backdrop_path": "/lNyLSOKMMeUPr1RsL4KcRuIXwHt.jpg",
-    "genre_ids": [
-      878,
-      28,
-      12
-    ],
-    "id": 580489,
-    "original_language": "en",
-    "original_title": "Venom: Let There Be Carnage",
-    "overview": "After finding a host body in investigative reporter Eddie Brock, the alien symbiote must face a new enemy, Carnage, the alter ego of serial killer Cletus Kasady.",
-    "popularity": 6526.86,
-    "poster_path": "/rjkmN1dniUHVYAtwuV3Tji7FsDO.jpg",
-    "release_date": "2021-09-30",
-    "title": "Venom: Let There Be Carnage",
-    "video": false,
-    "vote_average": 6.8,
-    "vote_count": 1659,
-    "addedAt": "11-08-2021"
-  },
-  "Super Mario vs Son Goku": {
-    "adult": false,
-    "backdrop_path": null,
-    "genre_ids": [
-      35,
-      28,
-      14
-    ],
-    "id": 580923,
-    "original_language": "tl",
-    "original_title": "Si Maryo o Si Goku",
-    "overview": "Loony William Martinez stars as your COMPU-WHACKO THRILL-SEEKER who entered into a series of hell-raising misadventures that will take the viewers to the outskirts of computer-generated fantasia. Isabel Granada also dished out an equally riveting comical thespian power as Martinez's lady love.",
-    "popularity": 3.016,
-    "poster_path": "/qMCc0hdC7KxiuYrfLE144pezngS.jpg",
-    "release_date": "1995-01-01",
-    "title": "Super Mario vs Son Goku",
-    "video": false,
-    "vote_average": 0,
-    "vote_count": 0,
-    "addedAt": "11-08-2021"
-  },
-  "Gokū no Daibōken": {
-    "adult": false,
-    "backdrop_path": null,
-    "genre_ids": [
-      16
-    ],
-    "id": 381908,
-    "original_language": "ja",
-    "original_title": "Gokū no Daibōken",
-    "overview": "",
-    "popularity": 0.874,
-    "poster_path": null,
-    "release_date": "1967-01-07",
-    "title": "Gokū no Daibōken",
-    "video": false,
-    "vote_average": 10,
-    "vote_count": 1,
-    "addedAt": "11-08-2021"
-  }
+    "cararqueu@gmail.com": {
+        "Dragon Ball Z: Gather Together! Goku's World": {
+            "adult": false,
+            "backdrop_path": "/cyL9OsDazviewaDbXtJJBynrRTw.jpg",
+            "genre_ids": [
+                28,
+                16,
+                12
+            ],
+            "id": 299963,
+            "original_language": "ja",
+            "original_title": "ドラゴンボール Ｚ あつまれ！ 悟空ワールド",
+            "overview": "In this OVA, Goku and his friends pose questions for the viewers about the Dragon Ball series.",
+            "popularity": 28.397,
+            "poster_path": "/fbXnQtxMIhZt8cgxwt9pG6XEjTg.jpg",
+            "release_date": "1992-09-17",
+            "title": "Dragon Ball Z: Gather Together! Goku's World",
+            "video": false,
+            "vote_average": 7.2,
+            "vote_count": 60,
+            "addedAt": "11-08-2021",
+            "suggestionForTodayScore": 28
+        },
+        "Dragon Ball: Goku's Traffic Safety": {
+            "adult": false,
+            "backdrop_path": "/rD0CyENQ1vvltt4FqLKVRAsVuRi.jpg",
+            "genre_ids": [
+                16
+            ],
+            "id": 273653,
+            "original_language": "ja",
+            "original_title": "ドラゴンボール 悟空の交通安全",
+            "overview": "An educational film featuring characters from \"Dragon Ball\". Roshi and Krillin are on their way to Bulma's birthday party, and they see a boy run into the street, nearly getting run over. Launch, as a traffic officer, teaches him about traffic safety. Meanwhile, Goku, who is also on his way to Bulma's party, gets a traffic lesson of his own from Suno after running through traffic to see her.",
+            "popularity": 14.658,
+            "poster_path": "/jdC25p16rWKKPRQtCAq3UWrXeLD.jpg",
+            "release_date": "1988-06-01",
+            "title": "Dragon Ball: Goku's Traffic Safety",
+            "video": false,
+            "vote_average": 6.6,
+            "vote_count": 31,
+            "addedAt": "11-08-2021",
+            "suggestionForTodayScore": 46
+        }
+    },
+    "wuilliam321u@gmail.com": {
+        "Dragon Ball: Goku's Traffic Safety": {
+            "adult": false,
+            "backdrop_path": "/rD0CyENQ1vvltt4FqLKVRAsVuRi.jpg",
+            "genre_ids": [
+                16
+            ],
+            "id": 273653,
+            "original_language": "ja",
+            "original_title": "ドラゴンボール 悟空の交通安全",
+            "overview": "An educational film featuring characters from \"Dragon Ball\". Roshi and Krillin are on their way to Bulma's birthday party, and they see a boy run into the street, nearly getting run over. Launch, as a traffic officer, teaches him about traffic safety. Meanwhile, Goku, who is also on his way to Bulma's party, gets a traffic lesson of his own from Suno after running through traffic to see her.",
+            "popularity": 14.658,
+            "poster_path": "/jdC25p16rWKKPRQtCAq3UWrXeLD.jpg",
+            "release_date": "1988-06-01",
+            "title": "Dragon Ball: Goku's Traffic Safety",
+            "video": false,
+            "vote_average": 6.6,
+            "vote_count": 31,
+            "addedAt": "11-08-2021",
+            "suggestionForTodayScore": 56
+        },
+        "Dragon Ball: Goku's Fire Brigade": {
+            "adult": false,
+            "backdrop_path": "/uAyrXQMBP405HUUnocxALXXKQel.jpg",
+            "genre_ids": [
+                16
+            ],
+            "id": 122401,
+            "original_language": "ja",
+            "original_title": "ドラゴンボール 悟空の消防隊",
+            "overview": "Goku's Fire Brigade is a ten-minute public service video about fire safety, which aired in Japan in June 1988. This video features the main Dragon Ball characters having jobs as firefighters and Bulma living in a new apartment with Scratch.",
+            "popularity": 13.612,
+            "poster_path": "/lJ08VXUa2tQ9MtMeWw7iepWYMJW.jpg",
+            "release_date": "1988-06-01",
+            "title": "Dragon Ball: Goku's Fire Brigade",
+            "video": false,
+            "vote_average": 6.6,
+            "vote_count": 27,
+            "addedAt": "11-08-2021",
+            "suggestionForTodayScore": 79
+        },
+        "My Son Goku": {
+            "adult": false,
+            "backdrop_path": null,
+            "genre_ids": [
+                16,
+                10751
+            ],
+            "id": 391643,
+            "original_language": "ja",
+            "original_title": "Boku no Son Gokuu",
+            "overview": "Son-Goku is a monkey who was born from a stone and is endowed with magical powers. He gets carried away and goes on a rampage until at last Buddha confines him within Mt. Gogyo. Saved by Sanzohoshi, Son-Goku accompanies him on a journey to India. But on their way, monsters lie in wait for them.",
+            "popularity": 2.667,
+            "poster_path": "/xMq2CGhzBLEwj9eFnZW6YHChfrJ.jpg",
+            "release_date": "2003-07-12",
+            "title": "My Son Goku",
+            "video": false,
+            "vote_average": 6.5,
+            "vote_count": 2,
+            "addedAt": "11-08-2021",
+            "suggestionForTodayScore": 31
+        },
+        "Dragon Ball Z: Lord Slug": {
+            "adult": false,
+            "backdrop_path": "/cyQK5IzMXDUS8o84HYbSIFQt1Vy.jpg",
+            "genre_ids": [
+                28,
+                16,
+                878
+            ],
+            "id": 39102,
+            "original_language": "ja",
+            "original_title": "ドラゴンボールゼット 超スーパーサイヤ人じんだ孫そん悟ご空くう",
+            "overview": "A Super Namekian named Slug comes to invade Earth. But the Z Warriors do their best to stop Slug and his gang.",
+            "popularity": 78.308,
+            "poster_path": "/1lmwZTsqwTtvd3m60pyQfhGM2Ut.jpg",
+            "release_date": "1991-03-19",
+            "title": "Dragon Ball Z: Lord Slug",
+            "video": false,
+            "vote_average": 6.3,
+            "vote_count": 359,
+            "addedAt": "11-08-2021",
+            "suggestionForTodayScore": 84
+        },
+        "Goku: Midnight Eye": {
+            "id": 77674,
+            "title": "Goku: Midnight Eye",
+            "video": false,
+            "vote_average": 6.3,
+            "vote_count": 17,
+            "addedAt": "11-08-2021"
+        }
+    }
 }
