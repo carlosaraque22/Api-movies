@@ -8,7 +8,7 @@ const bcrypt = require('bcrypt');
 // El numero de saltos que tendra la password al ser encriptada
 const saltRounds = 10;
 
-const usersDb = new JsonDB(new Config('./Usuarios', true, true, '/'));
+const usersDb = new JsonDB(new Config('./users', true, true, '/'));
 
 /* Funcion que se encarga de guardar el usuario y sus datos en la db(usersDb), devuelve exitoso si logra encriptar la contraseña 
 y almacenarla en la db, si falla devuelve error */

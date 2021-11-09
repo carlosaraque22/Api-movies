@@ -14,7 +14,7 @@ const { JsonDB } = require('node-json-db');
 const { Config } = require('node-json-db/dist/lib/JsonDBConfig');
 
 // Inicializando la base de datos que se encargara de almacenar las peliculas favoritas de los usuarios
-const favoritasDb = new JsonDB(new Config('./Favoritas', true, true, '/'));
+const favoritasDb = new JsonDB(new Config('./favoritos', true, true, '/'));
 
 /* Funcion que se encarga de hacer la request a la pagina de themoviedb.org, si el cliente pasa una keyword las peliculas enviadas al cliente 
  seran filtradas por esa keyword, si no pasan nada se enviaran al cliente peliculas aleatorias */
