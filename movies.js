@@ -97,7 +97,8 @@ const getMoviesByKeyword = (req, res) => {
         console.log(error)
     }
 };
-
+/* Funcion que se encarga de guardar las peliculas favoritas de los usuarios en una base de datos, recibe del header el token, si es correcto almacena las peliculas pasadas
+por el cliente en una db, si el token no es correcto o ya expiro se le devolvera un error al cliente */
 const addFavoriteMovies = (req, res) => {
     try {
         const token = req.headers.token
@@ -120,6 +121,8 @@ const addFavoriteMovies = (req, res) => {
     }
 }
 
+/* Funcion que se encarga de devolver al cliente las peliculas favoritas almacenadas en la db, recibe el token en el header, si el token es correcto devolvera al cliente
+todas las peliculas almacenadas en la db, si es incorrecto o ya expiro devolvera un error*/
 const getFavoriteMovies = (req, res) => {
     try {
         const token = req.headers.token
@@ -157,4 +160,6 @@ const getFavoriteMovies = (req, res) => {
         res.send("Ocurrio un error, por favor intentelo de nuevo")
     }
 }
+
+// Exportando las funciones para luego importarlas en el app.js
 module.exports = { getMoviesByKeyword, addFavoriteMovies, getFavoriteMovies }

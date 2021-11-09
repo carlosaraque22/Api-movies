@@ -81,4 +81,5 @@ const signIn = (req, res) => {
     }
 }
 
+// Exportando las funciones para luego importarlas en el app.js
 module.exports = { signUp, signIn }
